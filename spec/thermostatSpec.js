@@ -26,13 +26,19 @@ describe("thermostat", function(){
   });
 
   describe("Minimum temperature", function(){
-    it('raise error when temp < 10', function(){
-      var i;
-      for (i = 1; i < 11; i++) {
-        thermostat.down();
-      }
-    expect(function() {thermostat.down()} ).toThrow("Minimum temperature reached")
+      it('raise error when temp < 10', function(){
+        var i;
+        for (i = 1; i < 11; i++) {
+          thermostat.down();
+        }
+      expect(function() {thermostat.down()} ).toThrow("Minimum temperature reached")
+    });
   });
-  });
+
+  describe("Power saving mode", function() {
+    it("is on by default", function(){
+      expect(thermostat.powerSave).toBe(true)
+    })
+  })
 
 });
