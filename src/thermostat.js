@@ -1,3 +1,5 @@
+"use strict";
+
 class Thermostat{
 
   constructor(){
@@ -10,5 +12,9 @@ class Thermostat{
 
   up(){
     this.temperature ++
+  }
+
+  down(){
+    this.temperature --
   }
 }

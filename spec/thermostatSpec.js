@@ -17,4 +17,12 @@ describe("thermostat", function(){
       expect(thermostat.temp()).toBe(21);
     })
   });
+
+  describe("down function", function(){
+    it("decreases the temperature by one degree", function(){
+      thermostat.down();
+      expect(thermostat.temp()).toBe(19);
+    })
+  });
+
 });
