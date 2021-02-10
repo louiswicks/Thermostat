@@ -15,6 +15,11 @@ class Thermostat{
   }
 
   down(){
-    this.temperature --
+    if (this.temperature <= 10) {
+      throw "Minimum temperature reached"
+    }
+    else {
+      this.temperature --
+    }
   }
 }
