@@ -50,4 +50,22 @@ describe("thermostat", function(){
     });
   });
 
+  describe("Max temperature", function() {
+    it("limits temperature with power save on to 25", function() {
+      var i;
+      for (i = 1; i < 6; i++) {
+        thermostat.up();
+      }
+      expect(function() {thermostat.up()} ).toThrow("Maximum temperature reached")
+    })
+    it("limits temperature without powersave to 32", function() {
+      var i;
+      thermostat.switchPowerSave();
+      for (i = 1; i < 13; i++) {
+        thermostat.up();
+      };
+      expect(function() {thermostat.up()} ).toThrow("Maximum temperature reached")
+    })
+  })
+
 });

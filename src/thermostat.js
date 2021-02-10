@@ -12,6 +12,12 @@ class Thermostat{
   }
 
   up(){
+    if(this.powerSave && this.temperature >= 25) {
+      throw "Maximum temperature reached"
+    }
+    else if(this.temperature >= 32) {
+      throw "Maximum temperature reached"
+    }
     this.temperature ++
   }
 
