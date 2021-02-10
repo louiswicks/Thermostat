@@ -23,4 +23,8 @@ class Thermostat{
       this.temperature --
     }
   }
+
+  switchPowerSave(){
+    this.powerSave = !this.powerSave
+  }
 }
