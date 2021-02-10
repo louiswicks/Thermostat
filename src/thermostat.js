@@ -33,4 +33,8 @@ class Thermostat{
   switchPowerSave(){
     this.powerSave = !this.powerSave
   }
+
+  reset() {
+    this.temperature = 20 
+  }
 }

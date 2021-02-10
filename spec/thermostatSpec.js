@@ -68,4 +68,14 @@ describe("thermostat", function(){
     })
   })
 
+  describe("Reset function", function(){
+    it('should reset temperature to 20', function(){
+      for (var i = 1; i < 4; i++) {
+        thermostat.up();
+      };
+      thermostat.reset();
+      expect(thermostat.temp()).toBe(20);
+    });
+  });
+
 });
