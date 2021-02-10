@@ -35,6 +35,18 @@ class Thermostat{
   }
 
   reset() {
-    this.temperature = 20 
+    this.temperature = 20
+  }
+
+  energy_state() {
+    if (this.temperature < 18) {
+      return "Low"
+    }
+    else if (this.temperature <= 25) {
+      return "Medium"
+    }
+    else {
+      return "High"
+    }
   }
 }

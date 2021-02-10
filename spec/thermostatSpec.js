@@ -78,4 +78,23 @@ describe("thermostat", function(){
     });
   });
 
+  describe("Energy usage function", function(){
+    it("should return low-usage at temp < 18", function(){
+      for (var i = 1; i < 4; i++) {
+        thermostat.down();
+      };
+      expect(thermostat.energy_state()).toBe("Low")
+    })
+    it("should return medium-usage at temp <= 25", function(){
+      expect(thermostat.energy_state()).toBe("Medium")
+    })
+    it("should return high-usage at temp > 25", function(){
+      thermostat.switchPowerSave();
+      for (var i = 1; i < 7; i++) {
+        thermostat.up();
+      };
+      expect(thermostat.energy_state()).toBe("High");
+    });
+  });
+
 });
