@@ -39,6 +39,6 @@ describe("thermostat", function(){
     it("is on by default", function(){
       expect(thermostat.powerSave).toBe(true)
     })
-  })
+  })   
 
 });
