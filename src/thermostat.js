@@ -40,7 +40,7 @@ class Thermostat{
     if (this.temperature > 25) {
       this.temperature = 25;
     } else {
-        temp()
+        this.temperature
     }
     this.powerSave = true;
   }
