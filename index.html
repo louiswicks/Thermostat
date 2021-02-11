@@ -2,8 +2,16 @@
 <html>
   <head>
     <title>Thermostat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
+    <section>
+      <h1>Current temperature: <span id="current-temperature">20</span></h1>
+      <form id="select-city">
+        <input id="current-city" type="text" placeholder="Enter a city"></input>
+        <input type="submit"></input>
+      </form>
+    </section>
     <section>
       <h1 id="temperature"></h1>
       <p>
@@ -15,6 +23,75 @@
         <button id="powersaving-off">PSM off</button>
       </p>
     </section>
-    <script src="src/thermostat.js"></script> 
+    <script src="src/thermostat.js"></script>
   </body>
 </html>
+
+
+<script>
+
+  $(document).ready(function() {
+
+    var thermostat = new Thermostat();
+    updateTemperature();
+
+    $('#temperature-up').click(function() {
+      thermostat.up();
+      updateTemperature();
+    });
+
+    $('#temperature-down').click(function() {
+      thermostat.down();
+      updateTemperature();
+    });
+
+    $('#temperature-reset').click(function() {
+      thermostat.reset();
+      updateTemperature();
+    });
+
+    $('#powersaving-on').click(function() {
+      thermostat.switchPowerSavingModeOn();
+      $('#power-saving-status').text('on')
+      updateTemperature();
+    })
+
+    $('#powersaving-off').click(function() {
+      thermostat.switchPowerSavingModeOff();
+      $('#power-saving-status').text('off')
+      updateTemperature();
+    })
+
+    displayWeather('London');
+
+    $('#select-city').submit(function(event) {
+      event.preventDefault();
+      var city = $('#current-city').val();
+      displayWeather(city);
+    })
+
+
+    function updateTemperature() {
+      $('#temperature').text(thermostat.temperature);
+      if(thermostat.energy_state() === 'Low') {
+        $('#temperature').css('color', 'green')
+      } else if(thermostat.energy_state() === 'Medium') {
+        $('#temperature').css('color', 'orange')
+      } else {
+        $('#temperature').css('color', 'red')
+      }
+    }
+
+    function displayWeather(city) {
+     var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
+     var token = '&appid=a3d9eb01d4de82b9b8d0849ef604dbed';
+     var units = '&units=metric';
+     $.get(url + token + units, function(data) {
+       $('#current-temperature').text(data.main.temp);
+     })
+   }
+
+
+
+  });
+</script>

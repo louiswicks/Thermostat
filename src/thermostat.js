@@ -5,6 +5,8 @@ class Thermostat{
   constructor(){
     this.temperature = 20
     this.powerSave = true
+    this.MAX_LIMIT_PSM_ON = 25;
+    this.MAX_LIMIT_PSM_OFF = 32;
   }
 
   temp(){
@@ -32,6 +34,14 @@ class Thermostat{
 
   switchPowerSave(){
     this.powerSave = !this.powerSave
+  }
+
+  switchPowerSavingModeOn(){
+    this.powerSave = true;
+  }
+
+  switchPowerSavingModeOff() {
+    this.powerSave = false;
   }
 
   reset() {
