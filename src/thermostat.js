@@ -7,6 +7,7 @@ class Thermostat{
     this.powerSave = true
     this.MAX_LIMIT_PSM_ON = 25;
     this.MAX_LIMIT_PSM_OFF = 32;
+    this.MINIMUM_TEMP = 10;
   }
 
   temp(){
@@ -14,17 +15,17 @@ class Thermostat{
   }
 
   up(){
-    if(this.powerSave && this.temperature >= 25) {
+    if(this.powerSave && this.temperature >= this.MAX_LIMIT_PSM_ON) {
       throw "Maximum temperature reached"
     }
-    else if(this.temperature >= 32) {
+    else if(this.temperature >= this.MAX_LIMIT_PSM_OFF) {
       throw "Maximum temperature reached"
     }
     this.temperature ++
   }
 
   down(){
-    if (this.temperature <= 10) {
+    if (this.temperature <= this.MINIMUM_TEMP) {
       throw "Minimum temperature reached"
     }
     else {
@@ -37,7 +38,7 @@ class Thermostat{
   }
 
   switchPowerSavingModeOn(){
-    if (this.temperature > 25) {
+    if (this.temperature > this.MAX_LIMIT_PSM_ON) {
       this.temperature = 25;
     } else {
         this.temperature

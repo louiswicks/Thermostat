@@ -39,15 +39,19 @@ describe("thermostat", function(){
     it("is on by default", function(){
       expect(thermostat.powerSave).toBe(true);
     });
-    it("can be turned off", function(){
+    it("can be switched off", function(){
       thermostat.switchPowerSave();
-        expect(thermostat.powerSave).toBe(false);
+      expect(thermostat.powerSave).toBe(false);
     });
     it("can be switched back on again", function(){
       thermostat.switchPowerSave();
       thermostat.switchPowerSave();
-        expect(thermostat.powerSave).toBe(true);
+      expect(thermostat.powerSave).toBe(true);
     });
+    it("can be turned off", function(){
+      thermostat.switchPowerSavingModeOff();
+      expect(thermostat.powerSave).toBe(false);
+    })
   });
 
   describe("Max temperature", function() {
